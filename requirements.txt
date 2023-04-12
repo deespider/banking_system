@@ -1,0 +1,11 @@
+Django==4.0.5
+celery==5.2.7
+djangorestframework==3.13.1
+mysqlclient==2.1.0
+drf-spectacular==0.25.1
+ipython==8.3.0
+pre-commit==2.20.0
+pandas==1.5.1
+requests==2.27.1
+redis==4.5.1
+ipdb==0.13.9

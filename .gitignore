@@ -1,4 +1,4 @@
-banking/__pycache__
-Customer/__pycache__
-bankproject/__pycache__
+data/
+__pycache__
+venv/
 .venv
