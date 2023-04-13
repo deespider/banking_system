@@ -12,10 +12,13 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-
+import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+env = environ.Env(
+    DEBUG=(bool, False)
+)
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -26,7 +29,7 @@ SECRET_KEY = 'django-insecure-31wxbg#r5ucv=5zzc%0qwkgc3=d+u9dw_6lwunez!!ky)1t!te
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -39,12 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    
-    # 'rest_auth',
-    # 'django.contrib.sites',
-    # 'allauth',
-    # 'allauth.account',
-    # 'rest_auth.registration',
     'Customer',
     'banking',
 ]
@@ -93,9 +90,23 @@ REST_FRAMEWORK = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE':'django.db.backends.mysql',
+        'NAME': 'bank_project',
+        'USER':'root',
+        'PASSWORD':'Hello@99',
+        'HOST' : 'bank_db',
+        'PORT':'3306',
+        "OPTIONS":{"charset": "utf8mb4"}
     }
+    # 'default': {
+    #     'ENGINE': env("DB_ENGINE"),
+    #     'NAME': env("DB"),
+    #     'USER':env("USER") ,
+    #     'PASSWORD': env("PASSWORD"),
+    #     'HOST' : env("HOST"),
+    #     'PORT': env("PORT"),
+    #     "OPTIONS":{"charset": "utf8mb4"}
+    # }
 }
 
 
